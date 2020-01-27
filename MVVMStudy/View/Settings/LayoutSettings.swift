@@ -19,15 +19,15 @@ struct LayoutSettings{
     
     struct ImageSettings{
         static var top = CGFloat(0)
-        static var leading = CGFloat(0)
-        static var trailing = CGFloat(0)
-        static var bottom = CGFloat(0)
+        static var leading = CGFloat(16)
+        static var trailing = CGFloat(16)
+        static var bottom = CGFloat(16)
     }
     
     struct TitleSettings{
         static var top = CGFloat(8)
-        static var leading = CGFloat(8)
-        static var trailing = CGFloat(8)
-        static var bottom = CGFloat(8)
+        static var leading = CGFloat(16)
+        static var trailing = CGFloat(16)
+        static var bottom = CGFloat(16)
     }
 }

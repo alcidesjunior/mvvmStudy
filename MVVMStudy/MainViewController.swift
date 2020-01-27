@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     
     let manager = NetWorkManager()
     var movieViewModel: MoviesViewModel!
-    let movieView = MoviesView()
+    lazy var movieView = MoviesView()
     
     override func loadView() {
         self.view = movieView
@@ -22,12 +22,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        self.movieView.movieTableView.delegate = self
+        self.movieView.movieTableView.dataSource = self
         fetchData()
         
     }
 
     fileprivate func fetchData(){
-        self.manager.get(T: Movie.self, service: .popular(apiKey: "fb36a114c1dd651ad2d0d45ebbabad10")){
+        self.manager.get(T: Movie.self, service: .popular(apiKey: APIResources.apiKey.rawValue)){
             switch $0{
             case .success(let movies):
                 DispatchQueue.main.async {
@@ -41,3 +43,15 @@ class MainViewController: UIViewController {
     }
 }
 
+extension MainViewController: UITableViewDataSource, UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let moviesCount = movieViewModel?.moviesCount() else{ return 0 }
+        return moviesCount
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.movieView.movieTableView.dequeueReusableCell(withIdentifier: self.movieView.cellID, for: indexPath) as! MovieTableViewCell
+        cell.moviesResult = movieViewModel?.result(indexPath.item)
+        return cell
+    }
+}

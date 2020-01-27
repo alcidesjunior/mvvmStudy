@@ -13,8 +13,7 @@ class MovieTableViewCell: UITableViewCell {
     var moviesResult: Results!{
         didSet{
             movieTitle.text = moviesResult.originalTitle
-            print("caiu aqui")
-            if let imageURL = URL(string: "\(APIResources.baseImageUrl)/\(moviesResult.posterPath)"){
+            if let imageURL = URL(string: "\(APIResources.baseImageUrl.rawValue)/\(moviesResult.posterPath)"){
 
                 movieImageView.load(url: imageURL) {_ in
                     print("loaded")
@@ -30,6 +29,7 @@ class MovieTableViewCell: UITableViewCell {
     
     lazy var movieTitle: UILabel = {
         let view = UILabel(frame: .zero)
+        view.font = UIFont.systemFont(ofSize: 30)
         return view
     }()
 
@@ -50,6 +50,7 @@ class MovieTableViewCell: UITableViewCell {
                 .magicTop(LayoutSettings.ImageSettings.top, safeAreaLayoutGuide.topAnchor)
                 .magicLeading(LayoutSettings.ImageSettings.leading, safeAreaLayoutGuide.leadingAnchor)
                 .magicTrailing(LayoutSettings.ImageSettings.trailing, safeAreaLayoutGuide.trailingAnchor)
+                .magicHeight(400)
     }
     
     fileprivate func setupTitleViewConstraints(){

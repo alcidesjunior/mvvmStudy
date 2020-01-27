@@ -25,7 +25,6 @@ struct MoviesViewModel{
     }
     
     func result(_ id: Int = 0)->Results{
-        //da pra garantir que não vai estourar os dados fazendo um if
         return fetchAllResults()[id]
     }
 }

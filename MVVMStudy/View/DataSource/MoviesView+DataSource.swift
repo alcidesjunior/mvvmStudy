@@ -8,19 +8,16 @@
 
 import UIKit
 
-extension MoviesView: UITableViewDataSource, UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let moviesCount = moviesViewModel?.moviesCount() else{ return 0 }
-        return moviesCount
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = movieTableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath) as! MovieTableViewCell
-        cell.moviesResult = moviesViewModel?.result(indexPath.item)
-        print( moviesViewModel?.result(indexPath.item))
-        return cell
-    }
-    
-    
-}
+//extension MoviesView: UITableViewDataSource, UITableViewDelegate{
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        guard let moviesCount = moviesViewModel?.moviesCount() else{ return 0 }
+//        return moviesCount
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = movieTableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath) as! MovieTableViewCell
+//        cell.moviesResult = moviesViewModel?.result(indexPath.item)
+//        return cell
+//    }
+//}
 
