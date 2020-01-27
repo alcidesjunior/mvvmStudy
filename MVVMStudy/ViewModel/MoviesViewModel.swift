@@ -6,6 +6,7 @@
 //  Copyright © 2020 Alcides Junior. All rights reserved.
 //
 
+
 import Foundation
 
 struct MoviesViewModel{
