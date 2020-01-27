@@ -9,23 +9,38 @@
 
 import Foundation
 
-struct MoviesViewModel{
+class MoviesViewModel {
     
-    var movies: Movie
+    fileprivate var movies: Movie?
+    fileprivate var networkManager = NetWorkManager()
+    var changeLoaderState: ((_ visible: Bool) -> Void)?
     
-    init(movies: Movie){
-        self.movies = movies
+    init(){
+        self.fetchAllResults()
+    }
+    
+    func fetchAllResults(){
+        changeLoaderState?(true)
+        self.networkManager.get(T: Movie.self, service: .popular(apiKey: APIResources.apiKey.rawValue)) {
+            switch $0 {
+            case .success(let movies):
+                self.movies = movies
+            case .failure(let error):
+                print(error)
+            }
+            
+            self.changeLoaderState?(false)
+        }
+        
     }
     
     func moviesCount()->Int{
-        return self.movies.results.count
+        guard let countMovies = self.movies?.results.count else{return 0}
+        return countMovies
     }
     
-    func fetchAllResults()->[Results]{
-        return self.movies.results
-    }
-    
-    func result(_ id: Int = 0)->Results{
-        return fetchAllResults()[id]
+    func result(_ id: Int = 0)->Results?{
+        guard let currentResult = self.movies?.results[id] else{return nil}
+        return currentResult
     }
 }
