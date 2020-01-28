@@ -10,7 +10,6 @@ import UIKit
 
 final class MoviesView: UIView{
     
-    var moviesViewModel: MoviesViewModel?
     let cellID = "cell"
     var tvDataSource: UITableViewDataSource!
     var tvDelegate: UITableViewDelegate!

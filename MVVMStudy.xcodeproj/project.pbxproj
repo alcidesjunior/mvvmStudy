@@ -35,6 +35,7 @@
 		1AD3836B23DBD13900EB72F1 /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3836A23DBD13900EB72F1 /* URLSession+.swift */; };
 		1AD3836D23DBD5E700EB72F1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3836C23DBD5E700EB72F1 /* NetworkManager.swift */; };
 		1AD3836F23DBD84500EB72F1 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3836E23DBD84500EB72F1 /* Movie.swift */; };
+		1AE2656923DFA8CA006B4944 /* MoviesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2656823DFA8CA006B4944 /* MoviesViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		1AD3836A23DBD13900EB72F1 /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
 		1AD3836C23DBD5E700EB72F1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1AD3836E23DBD84500EB72F1 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		1AE2656823DFA8CA006B4944 /* MoviesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		1AD3833C23DBBBE300EB72F1 /* MVVMStudyTests */ = {
 			isa = PBXGroup;
 			children = (
+				1AE2656723DFA8A8006B4944 /* ViewModel */,
 				1AD3833D23DBBBE300EB72F1 /* MVVMStudyTests.swift */,
 				1AD3833F23DBBBE300EB72F1 /* Info.plist */,
 			);
@@ -272,6 +275,14 @@
 				1AD3836A23DBD13900EB72F1 /* URLSession+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1AE2656723DFA8A8006B4944 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1AE2656823DFA8CA006B4944 /* MoviesViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AD3833E23DBBBE300EB72F1 /* MVVMStudyTests.swift in Sources */,
+				1AE2656923DFA8CA006B4944 /* MoviesViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

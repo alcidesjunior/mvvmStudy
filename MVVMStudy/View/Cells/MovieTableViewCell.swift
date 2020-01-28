@@ -14,7 +14,6 @@ class MovieTableViewCell: UITableViewCell {
         didSet{
             movieTitle.text = moviesResult.originalTitle
             if let imageURL = URL(string: "\(APIResources.baseImageUrl.rawValue)/\(moviesResult.posterPath)"){
-
                 movieImageView.load(url: imageURL) {_ in
                     print("loaded")
                 }
