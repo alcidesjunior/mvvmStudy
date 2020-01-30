@@ -11,11 +11,20 @@ import UIKit
 class MainViewController: UIViewController {
     
     let manager = NetWorkManager()
-    var movieViewModel = MoviesViewModel()
+    lazy var movieViewModel = MoviesViewModel()
     lazy var movieView = MoviesView()
     
     override func loadView() {
         self.view = movieView
+    }
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        print("INIT VIEW CONTROLLER")
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
