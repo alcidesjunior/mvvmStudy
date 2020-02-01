@@ -15,10 +15,10 @@ class MoviesViewModel {
     fileprivate var networkManager = NetWorkManager()
 
     fileprivate func fetchAllResults(){
-        self.networkManager.get(T: Movie.self, service: .popular(apiKey: APIResources.apiKey.rawValue)) {
-            switch $0 {
+        self.networkManager.get(T: Movie.self, service: .popular(apiKey: APIResources.apiKey.rawValue)) {[weak self] data in
+            switch data {
             case .success(let movies):
-                self.movies = movies.results
+                self?.movies = movies.results
             case .failure(let error):
                 print(error)
             }
