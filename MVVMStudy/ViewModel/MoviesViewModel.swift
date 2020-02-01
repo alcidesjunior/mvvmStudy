@@ -13,23 +13,16 @@ class MoviesViewModel {
     
     fileprivate var movies: Movie?
     fileprivate var networkManager = NetWorkManager()
-    var changeLoaderState: ((_ visible: Bool) -> Void)?
+
     
-    init(){
-        self.fetchAllResults()
-    }
-    
-    func fetchAllResults(){
-        changeLoaderState?(true)
+    fileprivate func fetchAllResults(){
         self.networkManager.get(T: Movie.self, service: .popular(apiKey: APIResources.apiKey.rawValue)) {
             switch $0 {
             case .success(let movies):
-                self.movies = movies
+                    self.movies = movies
             case .failure(let error):
                 print(error)
             }
-            
-            self.changeLoaderState?(false)
         }
         
     }
