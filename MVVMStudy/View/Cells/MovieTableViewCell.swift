@@ -10,6 +10,7 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
+    //code-review: Este moviesResult deveria estar no viewModel e não dentro da view.
     var moviesResult: Results!{
         didSet{
 //            movieTitle.text = moviesResult.originalTitle
@@ -35,6 +36,7 @@ class MovieTableViewCell: UITableViewCell {
         return view
     }()
 
+    //code-review: Deleta códico q tu não for usar.
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
