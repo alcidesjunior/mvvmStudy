@@ -11,15 +11,14 @@ import Foundation
 
 class MoviesViewModel {
     
-    fileprivate var movies: Movie?
+    fileprivate var movies:[Results] = []
     fileprivate var networkManager = NetWorkManager()
 
-    
     fileprivate func fetchAllResults(){
         self.networkManager.get(T: Movie.self, service: .popular(apiKey: APIResources.apiKey.rawValue)) {
             switch $0 {
             case .success(let movies):
-                    self.movies = movies
+                self.movies = movies.results
             case .failure(let error):
                 print(error)
             }
@@ -28,15 +27,15 @@ class MoviesViewModel {
     }
     
     func moviesCount()->Int{
-        guard let countMovies = self.movies?.results.count else{return 0}
-        return countMovies
+        let rows = self.movies.count
+        if rows == 0{
+            self.fetchAllResults()
+            print("aqui")
+        }
+        return self.movies.count
     }
     
-    func result(_ id: Int = 0)->Results?{
-        if let currentResult = self.movies?.results[id]{
-            return currentResult
-            
-        }
-        return nil
+    func result(_ id: Int = 0)->Results{
+       return  self.movies[id]
     }
 }

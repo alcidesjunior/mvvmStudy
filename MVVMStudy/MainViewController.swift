@@ -16,7 +16,6 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         self.view = movieView
-//        self.
     }
     
     override func viewDidLoad() {
@@ -29,21 +28,19 @@ class MainViewController: UIViewController {
         self.movieView.movieTableView.reloadData()
         
         
+        
     }
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let moviesCount = movieViewModel.moviesCount()
-        
-        return moviesCount
+        return movieViewModel.moviesCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.movieView.movieTableView.dequeueReusableCell(withIdentifier: self.movieView.cellID, for: indexPath) as! MovieTableViewCell
         let result = movieViewModel.result(indexPath.item)
-        cell.moviesResult = result
-        cell.setup()
+        cell.setup(moviesResult: MovieCellViewModel(movie: result))
         return cell
     }
 }

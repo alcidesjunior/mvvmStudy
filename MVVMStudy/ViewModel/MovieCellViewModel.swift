@@ -17,7 +17,7 @@ class MovieCellViewModel{
     }
     
     func labelValue()->String{
-        return self.movie?.originalTitle ?? "Empty"
+        return self.movie?.originalTitle ?? ""
     }
     
     

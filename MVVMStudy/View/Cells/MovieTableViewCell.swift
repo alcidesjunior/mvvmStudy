@@ -10,18 +10,8 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
-    var moviesResult: Results!{
-        didSet{
-//            movieTitle.text = moviesResult.originalTitle
-//            if let imageURL = URL(string: "\(APIResources.baseImageUrl.rawValue)/\(moviesResult.posterPath)"){
-//                movieImageView.load(url: imageURL) { _ in }
-//            }
-        }
-    }
-    
-    func setup(){
-        let movieCellViewModel = MovieCellViewModel(movie: moviesResult)
-        self.movieTitle.text = movieCellViewModel.labelValue()
+    func setup(moviesResult: MovieCellViewModel){
+        self.movieTitle.text = moviesResult.labelValue()
     }
     
     lazy var movieImageView: UIImageView = {
