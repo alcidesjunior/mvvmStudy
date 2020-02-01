@@ -40,7 +40,10 @@ class MoviesViewModel {
     }
     
     func result(_ id: Int = 0)->Results?{
-        guard let currentResult = self.movies?.results[id] else{return nil}
-        return currentResult
+        if let currentResult = self.movies?.results[id]{
+            return currentResult
+            
+        }
+        return nil
     }
 }

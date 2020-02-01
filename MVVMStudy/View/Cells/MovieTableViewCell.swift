@@ -12,13 +12,16 @@ class MovieTableViewCell: UITableViewCell {
     
     var moviesResult: Results!{
         didSet{
-            movieTitle.text = moviesResult.originalTitle
-            if let imageURL = URL(string: "\(APIResources.baseImageUrl.rawValue)/\(moviesResult.posterPath)"){
-                movieImageView.load(url: imageURL) {_ in
-                    print("loaded")
-                }
-            }
+//            movieTitle.text = moviesResult.originalTitle
+//            if let imageURL = URL(string: "\(APIResources.baseImageUrl.rawValue)/\(moviesResult.posterPath)"){
+//                movieImageView.load(url: imageURL) { _ in }
+//            }
         }
+    }
+    
+    func setup(){
+        let movieCellViewModel = MovieCellViewModel(movie: moviesResult)
+        self.movieTitle.text = movieCellViewModel.labelValue()
     }
     
     lazy var movieImageView: UIImageView = {
@@ -70,7 +73,6 @@ class MovieTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupElements()
-        print("cell")
     }
     
     required init?(coder: NSCoder) {
