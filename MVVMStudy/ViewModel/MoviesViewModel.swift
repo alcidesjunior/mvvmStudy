@@ -9,12 +9,22 @@
 
 import Foundation
 
+typealias UpdatedClosure = ()->()
+
 class MoviesViewModel {
     
-    fileprivate var movies:[Results] = []
     fileprivate var networkManager = NetWorkManager()
-
-    fileprivate func fetchAllResults(){
+    fileprivate var movies:[Results] = []{
+        didSet{
+            DispatchQueue.main.async {
+                self.updatedList?()
+            }
+        }
+    }
+    
+    var updatedList: UpdatedClosure?
+    
+    func fetchAllResults(){
         self.networkManager.get(T: Movie.self, service: .popular(apiKey: APIResources.apiKey.rawValue)) {[weak self] data in
             switch data {
             case .success(let movies):

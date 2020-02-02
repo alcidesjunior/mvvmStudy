@@ -11,11 +11,16 @@ import UIKit
 class MainViewController: UIViewController {
     
     let manager = NetWorkManager()
-    var movieViewModel: MoviesViewModel!
+    var movieViewModel = MoviesViewModel()
     lazy var movieView = MoviesView()
     
     override func loadView() {
         self.view = movieView
+        self.movieViewModel.updatedList = {
+            DispatchQueue.main.async {
+                self.movieView.movieTableView.reloadData()
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -24,8 +29,6 @@ class MainViewController: UIViewController {
         view.backgroundColor = .white
         self.movieView.movieTableView.delegate = self
         self.movieView.movieTableView.dataSource = self
-        self.movieViewModel = MoviesViewModel()
-        self.movieView.movieTableView.reloadData()
         
         
         
