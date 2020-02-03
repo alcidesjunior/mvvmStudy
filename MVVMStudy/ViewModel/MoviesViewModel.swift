@@ -40,7 +40,6 @@ class MoviesViewModel {
         let rows = self.movies.count
         if rows == 0{
             self.fetchAllResults()
-            print("aqui")
         }
         return self.movies.count
     }
