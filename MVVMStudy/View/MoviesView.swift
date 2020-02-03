@@ -10,16 +10,11 @@ import UIKit
 
 final class MoviesView: UIView{
     
-    var moviesViewModel: MoviesViewModel?
     let cellID = "cell"
-    var tvDataSource: UITableViewDataSource!
-    var tvDelegate: UITableViewDelegate!
     
     lazy var movieTableView: UITableView = {
         let view = UITableView(frame: .zero)
         view.backgroundColor = .tertiarySystemFill
-        view.delegate = tvDelegate
-        view.dataSource = tvDataSource
         view.rowHeight = 450
         return view
     }()

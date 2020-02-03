@@ -10,15 +10,11 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
-    var moviesResult: Results!{
-        didSet{
-            movieTitle.text = moviesResult.originalTitle
-            if let imageURL = URL(string: "\(APIResources.baseImageUrl.rawValue)/\(moviesResult.posterPath)"){
-
-                movieImageView.load(url: imageURL) {_ in
-                    print("loaded")
-                }
-            }
+    func setup(moviesResult: MovieCellViewModel){
+        self.movieTitle.text = moviesResult.labelValue()
+        
+        self.movieImageView.load(url: moviesResult.imageURL()) { _ in
+            print("imagem carregada")
         }
     }
     
@@ -71,7 +67,6 @@ class MovieTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupElements()
-        print("cell")
     }
     
     required init?(coder: NSCoder) {

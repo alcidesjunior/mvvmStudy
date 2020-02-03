@@ -9,23 +9,42 @@
 
 import Foundation
 
-struct MoviesViewModel{
+typealias UpdatedClosure = ()->()
+
+class MoviesViewModel {
     
-    var movies: Movie
+    fileprivate var networkManager = NetWorkManager()
+    fileprivate var movies:[Results] = []{
+        didSet{
+            DispatchQueue.main.async {
+                self.updatedList?()
+            }
+        }
+    }
     
-    init(movies: Movie){
-        self.movies = movies
+    var updatedList: UpdatedClosure?
+    
+    func fetchAllResults(){
+        self.networkManager.get(T: Movie.self, service: .popular(apiKey: APIResources.apiKey.rawValue)) {[weak self] data in
+            switch data {
+            case .success(let movies):
+                self?.movies = movies.results
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
     }
     
     func moviesCount()->Int{
-        return self.movies.results.count
-    }
-    
-    func fetchAllResults()->[Results]{
-        return self.movies.results
+        let rows = self.movies.count
+        if rows == 0{
+            self.fetchAllResults()
+        }
+        return self.movies.count
     }
     
     func result(_ id: Int = 0)->Results{
-        return fetchAllResults()[id]
+       return  self.movies[id]
     }
 }

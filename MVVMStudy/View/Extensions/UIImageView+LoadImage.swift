@@ -8,7 +8,7 @@
 
 import UIKit
 extension UIImageView {
-    func load(url: URL, completion: @escaping ((_ errorMessage: String?) -> Void)) {
+    func load(url: URL, _ completion: @escaping ((_ errorMessage: String?) -> Void)) {
         DispatchQueue.global().async {
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
