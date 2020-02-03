@@ -12,6 +12,10 @@ class MovieTableViewCell: UITableViewCell {
     
     func setup(moviesResult: MovieCellViewModel){
         self.movieTitle.text = moviesResult.labelValue()
+        
+        self.movieImageView.load(url: moviesResult.imageURL()) { _ in
+            print("imagem carregada")
+        }
     }
     
     lazy var movieImageView: UIImageView = {

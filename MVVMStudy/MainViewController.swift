@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     let manager = NetWorkManager()
-    var movieViewModel = MoviesViewModel()
+    lazy var movieViewModel = MoviesViewModel()
     lazy var movieView = MoviesView()
     
     override func loadView() {
